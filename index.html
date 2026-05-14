@@ -3,273 +3,546 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home</title>
+  <title>Mahendra Connect | Buyer & Supplier Community</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0f0f13;
-      --surface: #1a1a24;
-      --border: #2a2a3a;
-      --accent: #7c6af7;
-      --accent-2: #f76a8a;
-      --text: #e8e8f0;
-      --muted: #888899;
+      --bg: #07111f;
+      --surface: #0e1b2d;
+      --surface-2: #13243a;
+      --border: rgba(148, 163, 184, .22);
+      --accent: #39d0ff;
+      --accent-2: #7c6af7;
+      --accent-3: #32d583;
+      --text: #f8fafc;
+      --muted: #aab8cc;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .35);
     }
 
     body {
-      background: var(--bg);
+      background:
+        radial-gradient(circle at top left, rgba(57, 208, 255, .18), transparent 30rem),
+        radial-gradient(circle at 80% 20%, rgba(124, 106, 247, .18), transparent 32rem),
+        var(--bg);
       color: var(--text);
-      font-family: 'Segoe UI', system-ui, sans-serif;
+      font-family: Inter, 'Segoe UI', system-ui, sans-serif;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      line-height: 1.5;
     }
 
-    /* ── NAV ── */
+    a { color: inherit; }
+
     nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.2rem 2.5rem;
+      gap: 1.5rem;
+      padding: 1.1rem clamp(1.2rem, 4vw, 4rem);
       border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(16px);
       position: sticky;
       top: 0;
       z-index: 10;
-      background: rgba(15,15,19,.85);
+      background: rgba(7, 17, 31, .84);
     }
 
     .logo {
-      font-size: 1.4rem;
-      font-weight: 700;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -.03em;
+    }
+
+    .logo-mark {
+      width: 2.1rem;
+      height: 2.1rem;
+      display: grid;
+      place-items: center;
+      border-radius: .75rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 12px 30px rgba(57, 208, 255, .25);
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 2rem;
+      align-items: center;
+      gap: clamp(.9rem, 2.3vw, 2rem);
     }
 
     nav a {
       color: var(--muted);
       text-decoration: none;
       font-size: .95rem;
-      transition: color .2s;
+      transition: color .2s, border-color .2s, background .2s;
     }
 
     nav a:hover { color: var(--text); }
 
     .nav-cta {
-      background: var(--accent);
-      color: #fff !important;
-      padding: .45rem 1.1rem;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: opacity .2s !important;
+      background: rgba(57, 208, 255, .12);
+      border: 1px solid rgba(57, 208, 255, .38);
+      color: #e7fbff !important;
+      padding: .55rem 1rem;
+      border-radius: 999px;
+      font-weight: 700;
     }
 
-    .nav-cta:hover { opacity: .85; }
-
-    /* ── HERO ── */
     .hero {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, .92fr);
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 6rem 2rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(124,106,247,.18) 0%, transparent 70%);
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      pointer-events: none;
+      gap: clamp(2rem, 5vw, 5rem);
+      padding: clamp(4rem, 8vw, 7rem) clamp(1.2rem, 4vw, 4rem) 3.5rem;
+      max-width: 1240px;
+      margin: 0 auto;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: .4rem;
-      background: rgba(124,106,247,.12);
-      border: 1px solid rgba(124,106,247,.3);
-      color: var(--accent);
-      font-size: .82rem;
-      font-weight: 600;
-      padding: .35rem .9rem;
+      gap: .45rem;
+      background: rgba(50, 213, 131, .12);
+      border: 1px solid rgba(50, 213, 131, .34);
+      color: #a9f4c8;
+      font-size: .83rem;
+      font-weight: 700;
+      padding: .4rem .85rem;
       border-radius: 999px;
-      margin-bottom: 1.8rem;
-      letter-spacing: .4px;
+      margin-bottom: 1.25rem;
     }
 
     h1 {
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -1px;
-      max-width: 720px;
-      margin-bottom: 1.4rem;
+      font-size: clamp(2.7rem, 6vw, 5.8rem);
+      font-weight: 900;
+      line-height: .98;
+      letter-spacing: -.075em;
+      max-width: 780px;
+      margin-bottom: 1.35rem;
     }
 
     h1 span {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      background: linear-gradient(135deg, var(--accent), #b7a8ff 58%, var(--accent-3));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .subtitle {
-      font-size: 1.15rem;
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
       color: var(--muted);
-      max-width: 520px;
-      line-height: 1.7;
-      margin-bottom: 2.4rem;
+      max-width: 680px;
+      line-height: 1.75;
+      margin-bottom: 2rem;
     }
 
     .cta-group {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
-      justify-content: center;
+      margin-bottom: 2rem;
     }
 
     .btn {
-      padding: .75rem 1.8rem;
-      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .45rem;
+      padding: .86rem 1.35rem;
+      border-radius: 12px;
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: 800;
       cursor: pointer;
       border: none;
       text-decoration: none;
-      transition: transform .15s, opacity .15s;
+      transition: transform .15s, opacity .15s, border-color .15s;
     }
 
-    .btn:hover { transform: translateY(-2px); opacity: .9; }
+    .btn:hover { transform: translateY(-2px); opacity: .94; }
 
     .btn-primary {
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: #fff;
+      box-shadow: 0 18px 45px rgba(57, 208, 255, .2);
     }
 
     .btn-outline {
-      background: transparent;
+      background: rgba(255, 255, 255, .04);
       border: 1px solid var(--border);
       color: var(--text);
     }
 
-    /* ── CARDS ── */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.2rem;
-      padding: 3rem 2.5rem 5rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      width: 100%;
+    .trust-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: .93rem;
     }
 
-    .card {
-      background: var(--surface);
+    .trust-row strong { color: var(--text); }
+
+    .network-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(19, 36, 58, .92), rgba(14, 27, 45, .92));
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.6rem;
-      transition: border-color .2s, transform .2s;
+      border-radius: 28px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+      overflow: hidden;
     }
 
-    .card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
+    .network-card::before {
+      content: '';
+      position: absolute;
+      inset: -6rem -6rem auto auto;
+      width: 14rem;
+      height: 14rem;
+      border-radius: 999px;
+      background: rgba(57, 208, 255, .16);
+      filter: blur(8px);
     }
 
-    .card-icon {
-      font-size: 1.8rem;
+    .profile-card, .post-card, .match-card {
+      position: relative;
+      background: rgba(7, 17, 31, .72);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1rem;
       margin-bottom: .9rem;
     }
 
-    .card h3 {
+    .profile-card {
+      display: grid;
+      grid-template-columns: 52px 1fr auto;
+      gap: .85rem;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #1d9bf0, #32d583);
+      font-weight: 900;
+    }
+
+    .profile-card h3, .post-card h3, .match-card h3 { font-size: 1rem; }
+    .profile-card p, .post-card p, .match-card p { color: var(--muted); font-size: .88rem; }
+
+    .status {
+      color: #a9f4c8;
+      background: rgba(50, 213, 131, .12);
+      border: 1px solid rgba(50, 213, 131, .28);
+      padding: .32rem .6rem;
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    .post-card {
+      margin-left: 2.4rem;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: .9rem;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .match-card {
+      margin-right: 2.2rem;
+      margin-bottom: 0;
+      background: rgba(57, 208, 255, .08);
+    }
+
+    .section {
+      padding: 4rem clamp(1.2rem, 4vw, 4rem);
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin-bottom: 1.8rem;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: .78rem;
+      font-weight: 900;
+      margin-bottom: .55rem;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: -.055em;
+      line-height: 1.08;
+      margin-bottom: .8rem;
+    }
+
+    .section-heading p {
+      color: var(--muted);
       font-size: 1.05rem;
-      font-weight: 700;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: rgba(14, 27, 45, .86);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.35rem;
+      transition: border-color .2s, transform .2s, background .2s;
+    }
+
+    .card:hover {
+      border-color: rgba(57, 208, 255, .55);
+      transform: translateY(-4px);
+      background: rgba(19, 36, 58, .95);
+    }
+
+    .card-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: rgba(57, 208, 255, .12);
+      border: 1px solid rgba(57, 208, 255, .22);
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.08rem;
+      font-weight: 800;
       margin-bottom: .5rem;
     }
 
     .card p {
-      font-size: .9rem;
+      font-size: .95rem;
       color: var(--muted);
-      line-height: 1.6;
     }
 
-    /* ── FOOTER ── */
+    .journey {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .step {
+      position: relative;
+      padding: 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .035);
+    }
+
+    .step-number {
+      color: #06111f;
+      background: var(--accent);
+      width: 2rem;
+      height: 2rem;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      font-weight: 900;
+      margin-bottom: .9rem;
+    }
+
+    .step p { color: var(--muted); font-size: .92rem; margin-top: .35rem; }
+
+    .cta-panel {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(57, 208, 255, .14), rgba(124, 106, 247, .16));
+      border: 1px solid rgba(57, 208, 255, .28);
+      border-radius: 28px;
+      padding: clamp(1.4rem, 4vw, 2.4rem);
+      box-shadow: var(--shadow);
+    }
+
+    .cta-panel p { color: var(--muted); margin-top: .45rem; max-width: 680px; }
+
     footer {
       text-align: center;
       padding: 1.5rem;
       border-top: 1px solid var(--border);
       color: var(--muted);
-      font-size: .85rem;
+      font-size: .9rem;
+    }
+
+    @media (max-width: 900px) {
+      nav { align-items: flex-start; flex-direction: column; }
+      nav ul { flex-wrap: wrap; }
+      .hero, .cta-panel { grid-template-columns: 1fr; }
+      .cards, .journey { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .post-card, .match-card { margin-left: 0; margin-right: 0; }
+    }
+
+    @media (max-width: 560px) {
+      .cards, .journey { grid-template-columns: 1fr; }
+      .profile-card { grid-template-columns: 52px 1fr; }
+      .status { grid-column: 1 / -1; width: fit-content; }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <div class="logo">Mahendra</div>
+  <nav aria-label="Primary navigation">
+    <div class="logo"><span class="logo-mark">M</span> Mahendra Connect</div>
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Work</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#" class="nav-cta">Contact</a></li>
+      <li><a href="#network">Network</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#workflow">Workflow</a></li>
+      <li><a href="#start" class="nav-cta">Start Community</a></li>
     </ul>
   </nav>
 
-  <section class="hero">
-    <div class="badge">&#x2728; Welcome to my space</div>
-    <h1>Build things that<br /><span>actually matter</span></h1>
-    <p class="subtitle">
-      A modern workspace for ideas, projects, and everything in between.
-      Explore, create, and ship with confidence.
-    </p>
-    <div class="cta-group">
-      <a href="#" class="btn btn-primary">Get Started</a>
-      <a href="#" class="btn btn-outline">Learn More</a>
-    </div>
-  </section>
+  <main>
+    <section class="hero" id="network">
+      <div>
+        <div class="badge">B2B relationship network • Not a catalog marketplace</div>
+        <h1>Connect buyers with the <span>right supplier sales people.</span></h1>
+        <p class="subtitle">
+          Build a LinkedIn-style community where buyer-company teams discover verified supplier contacts,
+          follow product updates, maintain professional profiles, and start direct conversations with the
+          sales person who owns their category, region, or account.
+        </p>
+        <div class="cta-group">
+          <a href="#start" class="btn btn-primary">Map the platform</a>
+          <a href="#features" class="btn btn-outline">Explore features</a>
+        </div>
+        <div class="trust-row" aria-label="Platform highlights">
+          <span><strong>Buyer profiles</strong> with company roles</span>
+          <span><strong>Supplier pages</strong> with product posts</span>
+          <span><strong>Sales mapping</strong> company-wise</span>
+        </div>
+      </div>
 
-  <section class="cards">
-    <div class="card">
-      <div class="card-icon">&#x26A1;</div>
-      <h3>Fast by Default</h3>
-      <p>Optimised for speed from the ground up — every millisecond counts.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">&#x1F3A8;</div>
-      <h3>Clean Design</h3>
-      <p>Minimal, focused UI that stays out of your way while you work.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">&#x1F512;</div>
-      <h3>Secure</h3>
-      <p>Built with security best-practices baked in from day one.</p>
-    </div>
-    <div class="card">
-      <div class="card-icon">&#x1F4E6;</div>
-      <h3>Modular</h3>
-      <p>Mix and match components to build exactly what you need.</p>
-    </div>
-  </section>
+      <aside class="network-card" aria-label="Product preview">
+        <div class="profile-card">
+          <div class="avatar">AK</div>
+          <div>
+            <h3>Anita Kumar</h3>
+            <p>Procurement Manager • Orion Auto</p>
+          </div>
+          <span class="status">Buyer</span>
+        </div>
+        <div class="post-card">
+          <h3>Supplier update: precision fasteners for EV assembly</h3>
+          <p>Posted by Nova Components with datasheet, certifications, and available sales owners.</p>
+          <div class="post-meta"><span>26 interested buyers</span><span>3 sales contacts</span></div>
+        </div>
+        <div class="match-card">
+          <h3>Recommended contact</h3>
+          <p>Rahul Mehta, Regional Sales Lead at Nova Components, covers automotive buyers in West India.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-heading">
+        <p class="eyebrow">Core modules</p>
+        <h2>Everything needed for a relationship-first supplier network.</h2>
+        <p>Focus on verified people, company context, product conversations, and measurable supplier engagement.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="card-icon">👤</div>
+          <h3>Buyer & sales profiles</h3>
+          <p>Maintain LinkedIn-like professional profiles with role, company, categories handled, location, and decision authority.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">🏢</div>
+          <h3>Supplier company pages</h3>
+          <p>Let suppliers showcase capabilities, product families, certifications, plants, and the sales team responsible for each segment.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">📣</div>
+          <h3>Product posts & updates</h3>
+          <p>Enable supplier posts for launches, samples, case studies, pricing signals, technical documents, and buyer Q&A.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">🎯</div>
+          <h3>Relevant contact matching</h3>
+          <p>Route buyers to the correct sales person based on industry, geography, category, company assignment, or existing relationship.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">📊</div>
+          <h3>Company-wise sales tracking</h3>
+          <p>Track which sales people represent which suppliers, buyer interactions, response activity, and account coverage gaps.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">💬</div>
+          <h3>Direct outreach</h3>
+          <p>Support connection requests, introductions, messages, meeting requests, and warm handoffs without turning the site into a cart.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="workflow">
+      <div class="section-heading">
+        <p class="eyebrow">How it works</p>
+        <h2>A simple discovery-to-conversation flow.</h2>
+      </div>
+      <div class="journey">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Verify companies</h3>
+          <p>Approve buyer companies, supplier companies, and users before they join the trusted network.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Map people</h3>
+          <p>Attach buyers and sales people to companies, categories, territories, and account ownership.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Publish updates</h3>
+          <p>Suppliers post product stories and buyers follow the categories or vendors relevant to their work.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Start outreach</h3>
+          <p>Buyers request introductions or message the right sales owner with full company context.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="start">
+      <div class="cta-panel">
+        <div>
+          <p class="eyebrow">Next build step</p>
+          <h2>Start with profiles, company pages, posts, matching, and messaging.</h2>
+          <p>
+            The MVP should prioritize trust and relevance: verified members, supplier-side sales mappings,
+            product update feeds, buyer search filters, and direct outreach workflows.
+          </p>
+        </div>
+        <a href="mailto:hello@example.com" class="btn btn-primary">Plan the MVP</a>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    &copy; 2026 Mahendra &mdash; Made with care
+    &copy; 2026 Mahendra Connect &mdash; A buyer-supplier professional community platform
   </footer>
 
 </body>
